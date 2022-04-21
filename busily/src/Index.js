@@ -61,7 +61,7 @@ export default function AppRouter () {
                         />
                         <Tab.Screen
                             name="Scan"
-                            component={CardPage}
+                            component={ScanPage}
                             options={{
                                 tabBarLabel: 'Scan',
                                 tabBarIcon: ({ color, size }) => (

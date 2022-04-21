@@ -22,7 +22,7 @@ const Library = ({ fetchDataAll, users, navigation }) => {
                             (e) => onPressHandler(index)
                         }>
                             <View style={styles.insideCard}>
-                                <Text style={styles.insideCardText}>{u.username}</Text>
+                                <Text style={styles.insideCardText}>{u.name} ({u.username})</Text>
                                 <Text style={styles.insideCardText}>{u.email}</Text>
                                 <Text style={styles.insideCardText}>{u.phone}</Text>
                                 <Text style={styles.insideCardText}>{u.company.name}</Text>

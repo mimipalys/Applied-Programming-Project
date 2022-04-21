@@ -1,11 +1,11 @@
 import React, { Component, useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { connect } from "react-redux";
-import { fetchDataAll } from "../../actions/Actions";
+import { fetchMainUser } from "../../actions/Actions";
 
-const Card = ({ fetchDataAll, users, navigation }) => {
-    useEffect(() => fetchDataAll(), []);
+const Card = ({ fetchMainUser, users, navigation }) => {
+    useEffect(() => fetchMainUser(), []);
 
     const onPressHandler = (index) => {
         navigation.push("Library", {
@@ -15,24 +15,21 @@ const Card = ({ fetchDataAll, users, navigation }) => {
 
     return (
         <View style={styles.container}>
-            {users.map((u, index) => (
-                <View key={index} style={styles.usernameWrapper}>
-                    <Text>keks</Text>
-                    <TouchableOpacity onPress={
-                        (e) => onPressHandler(index)
-                    }>
-                        <div>
-                            Card
-                        </div>
-                    </TouchableOpacity>
-                </View>
-            ))}
-            <TouchableOpacity
-                onPress={() => fetchDataAll()}
-                style={styles.refreshButton}
-            >
-                <Text>Refresh</Text>
-            </TouchableOpacity>
+                {users.map((u, index) => (
+                    <View key={index} style={styles.usernameContainer}>
+                        <TouchableOpacity onPress={
+                            (e) => onPressHandler(index)
+                        }>
+                            <View style={styles.insideCard}>
+                                <Text style={styles.insideCardText}>{u.name} ({u.username})</Text>
+                                <Text style={styles.insideCardText}>{u.email}</Text>
+                                <Text style={styles.insideCardText}>{u.phone}</Text>
+                                <Text style={styles.insideCardText}>{u.company.name}</Text>
+                                <Text style={styles.insideCardText}>{u.website}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                ))}
         </View>
     );
 }
@@ -61,7 +58,7 @@ const styles = StyleSheet.create({
         height: 20,
         backgroundColor: "#ccc",
     },
-    usernameWrapper: {
+    usernameContainer: {
         display: "flex",
         height: 40,
         flexDirection: "row",
@@ -72,6 +69,10 @@ const styles = StyleSheet.create({
     detailsButton: {
         height: 20,
         width: 100
+    },
+    Scroller: {
+        padding: 10,
+        width: "100%",
     }
 });
 
@@ -82,7 +83,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-    fetchDataAll,
+    fetchMainUser,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Card);
