@@ -63,7 +63,7 @@ export default function App() {
 */
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-import AppRouter from './src';
+import AppRouter from './src/Index';
 import 'react-native-gesture-handler';
 class App extends Component {
 

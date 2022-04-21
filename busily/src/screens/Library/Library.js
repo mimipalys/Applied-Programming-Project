@@ -1,5 +1,5 @@
 import React, { Component, useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 import { fetchDataAll } from "../../actions/Actions";
@@ -15,27 +15,23 @@ const Library = ({ fetchDataAll, users, navigation }) => {
 
     return (
         <View style={styles.container}>
-            {users.map((u, index) => (
-                <View key={index} style={styles.usernameWrapper}>
-                    <Text>{u.username}</Text>
-                    <Text>{u.email}</Text>
-                    <Text>{u.company.name}</Text>
-                    <Text>{u.phone}</Text>
-                    <TouchableOpacity onPress={
-                        (e) => onPressHandler(index)
-                    }>
-                        <div>
-                            Card
-                        </div>
-                    </TouchableOpacity>
-                </View>
-            ))}
-            <TouchableOpacity
-                onPress={() => fetchDataAll()}
-                style={styles.refreshButton}
-            >
-                <Text>Refresh</Text>
-            </TouchableOpacity>
+            <ScrollView style={styles.Scroller}>
+                {users.map((u, index) => (
+                    <View key={index} style={styles.usernameWrapper}>
+                        <TouchableOpacity onPress={
+                            (e) => onPressHandler(index)
+                        }>
+                            <View style={styles.insideCard}>
+                                <Text style={styles.insideCardText}>{u.username}</Text>
+                                <Text style={styles.insideCardText}>{u.email}</Text>
+                                <Text style={styles.insideCardText}>{u.phone}</Text>
+                                <Text style={styles.insideCardText}>{u.company.name}</Text>
+                                <Text style={styles.insideCardText}>{u.website}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                ))}
+            </ScrollView>
         </View>
     );
 }
@@ -51,8 +47,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         margin: 20,
-        width: 200,
-        height: 100,
         backgroundColor: "#ccc",
     },
     refreshButton: {
@@ -60,21 +54,33 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         margin: 10,
-        width: 20,
-        height: 20,
         backgroundColor: "#ccc",
     },
     usernameWrapper: {
-        display: "flex",
-        height: 40,
+        display: "inline-block",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        width: "90%"
+        backgroundColor: '#fff',
+        shadowOffset: {width: 1, height: 1},
+        shadowColor: '#333',
+        shadowRadius: 2,
+        marginVertical: 5,
+    },
+    insideCard: {
+      display: "flex",
+      padding: 10,
+    },
+    insideCardText: {
+        display: "flex",
     },
     detailsButton: {
         height: 20,
         width: 100
+    },
+    Scroller: {
+        padding: 10,
+        width: "100%",
     }
 });
 
