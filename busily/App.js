@@ -1,4 +1,4 @@
-import * as React from 'react';
+/*import * as React from 'react';
 import { Text, TextInput, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -60,3 +60,26 @@ export default function App() {
         </NavigationContainer>
     );
 }
+*/
+import React, { Component } from 'react';
+import { StyleSheet, View } from 'react-native';
+import AppRouter from './src';
+import 'react-native-gesture-handler';
+class App extends Component {
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <AppRouter />
+            </View>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+});
+
+export default App;
