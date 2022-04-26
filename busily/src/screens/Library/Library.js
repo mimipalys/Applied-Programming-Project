@@ -17,7 +17,7 @@ const Library = ({ fetchDataAll, users, navigation }) => {
         <View style={styles.container}>
             <ScrollView style={styles.Scroller}>
                 {users.map((u, index) => (
-                    <View key={index} style={styles.usernameWrapper}>
+                    <View key={index} style={styles.usernameWrapper2}>
                         <TouchableOpacity onPress={
                             (e) => onPressHandler(index)
                         }>
@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
         margin: 10,
         backgroundColor: "#ccc",
     },
-    usernameWrapper: {
-        display: "inline-block",
+    usernameWrapper2: {
+        display: "flex",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",

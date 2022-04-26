@@ -1,7 +1,8 @@
-import { FETCH_ALL_DATA } from "../constants/Constants";
+import {FETCH_ALL_DATA, FETCH_ONE_DATA} from "../constants/Constants";
 
 const initialState = {
     users: [],
+    user: any,
     sensors: [
         {
             name: "Tesaa",
@@ -15,6 +16,11 @@ export const app = (state = initialState, action) => {
             return {
                 ...state,
                 users: action.data,
+            };
+        case FETCH_ONE_DATA:
+            return {
+                ...state,
+                user: action.data,
             };
         default:
             return state;

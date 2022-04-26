@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 import { fetchMainUser } from "../../actions/Actions";
 
-const Card = ({ fetchMainUser, users, navigation }) => {
+const Card = ({ fetchMainUser, user, navigation }) => {
     useEffect(() => fetchMainUser(), []);
 
     const onPressHandler = (index) => {
@@ -15,21 +15,21 @@ const Card = ({ fetchMainUser, users, navigation }) => {
 
     return (
         <View style={styles.container}>
-                {users.map((u, index) => (
-                    <View key={index} style={styles.usernameContainer}>
+
+                    <View  style={styles.usernameContainer}>
                         <TouchableOpacity onPress={
-                            (e) => onPressHandler(index)
+                            (e) => onPressHandler()
                         }>
                             <View style={styles.insideCard}>
-                                <Text style={styles.insideCardText}>{u.name} ({u.username})</Text>
-                                <Text style={styles.insideCardText}>{u.email}</Text>
-                                <Text style={styles.insideCardText}>{u.phone}</Text>
-                                <Text style={styles.insideCardText}>{u.company.name}</Text>
-                                <Text style={styles.insideCardText}>{u.website}</Text>
+                                <Text style={styles.insideCardText}>{user.name} ({user.username})</Text>
+                                <Text style={styles.insideCardText}>{user.email}</Text>
+                                <Text style={styles.insideCardText}>{user.phone}</Text>
+                                <Text style={styles.insideCardText}>{user.company.name}</Text>
+                                <Text style={styles.insideCardText}>{user.website}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
-                ))}
+
         </View>
     );
 }
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: "rgba(191,215,222,0.87)",
     },
     button: {
         display: "flex",
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-        users: state.app.users,
+        user: state.app.user,
     };
 };
 

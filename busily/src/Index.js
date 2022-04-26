@@ -42,7 +42,7 @@ export default function AppRouter () {
                 <NavigationContainer>
                     <Tab.Navigator
                         initialRouteName="Feed"
-                        tabBarOptions={{
+                        screenOptions={{
                             activeTintColor: '#42f44b',
                         }}>
                         <Tab.Screen
