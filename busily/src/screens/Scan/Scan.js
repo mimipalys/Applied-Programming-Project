@@ -29,11 +29,13 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     ScanButton: {
-        backgroundColor: "#42f44b",
-        width: "100%"
+        backgroundColor: "rgba(16,71,73,0.5)",
+        borderRadius: 300,
+        width: "100%",
+        padding:100,
     },
     ScanInside: {
-        marginVertical: 5,
+        marginVertical: 20,
         marginHorizontal: 5,
         color: "#000",
         fontSize: 32,

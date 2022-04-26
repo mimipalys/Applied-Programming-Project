@@ -39,8 +39,20 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "rgba(191,215,222,0.87)",
+
     },
+    insideCard: {
+       backgroundColor: "rgba(16,71,73,0.5)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: 20,
+        width: 345,
+        height: 550,
+        borderRadius: 10,
+
+},
+
     button: {
         display: "flex",
         justifyContent: "center",
