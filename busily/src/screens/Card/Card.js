@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 import { fetchMainUser } from "../../actions/Actions";
 
-const Card = ({ fetchMainUser, user, navigation }) => {
+const Card = ({ fetchMainUser, navigation }) => {
     useEffect(() => fetchMainUser(), []);
 
     const onPressHandler = (index) => {
@@ -21,11 +21,11 @@ const Card = ({ fetchMainUser, user, navigation }) => {
                             (e) => onPressHandler()
                         }>
                             <View style={styles.insideCard}>
-                                <Text style={styles.insideCardText}>{user.name} ({user.username})</Text>
-                                <Text style={styles.insideCardText}>{user.email}</Text>
-                                <Text style={styles.insideCardText}>{user.phone}</Text>
-                                <Text style={styles.insideCardText}>{user.company.name}</Text>
-                                <Text style={styles.insideCardText}>{user.website}</Text>
+                                <Text style={styles.insideCardText}>Brett</Text>
+                                <Text style={styles.insideCardText}>test</Text>
+                                <Text style={styles.insideCardText}>1</Text>
+                                <Text style={styles.insideCardText}>sf</Text>
+                                <Text style={styles.insideCardText}>zuuu</Text>
                             </View>
                         </TouchableOpacity>
                     </View>

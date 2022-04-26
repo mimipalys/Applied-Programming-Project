@@ -2,7 +2,7 @@ import {FETCH_ALL_DATA, FETCH_ONE_DATA} from "../constants/Constants";
 
 const initialState = {
     users: [],
-    user: any,
+    // user: any,
     sensors: [
         {
             name: "Tesaa",
