@@ -21,11 +21,11 @@ const Card = ({ fetchMainUser, navigation }) => {
                             (e) => onPressHandler()
                         }>
                             <View style={styles.insideCard}>
-                                <Text style={styles.insideCardText}>Brett</Text>
-                                <Text style={styles.insideCardText}>test</Text>
-                                <Text style={styles.insideCardText}>1</Text>
-                                <Text style={styles.insideCardText}>sf</Text>
-                                <Text style={styles.insideCardText}>zuuu</Text>
+                                <Text style={styles.insideCardText}>name</Text>
+                                <Text style={styles.insideCardText}>last name</Text>
+                                <Text style={styles.insideCardText}>email</Text>
+                                <Text style={styles.insideCardText}>address</Text>
+                                <Text style={styles.insideCardText}>contact</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
