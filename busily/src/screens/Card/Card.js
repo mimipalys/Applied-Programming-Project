@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 import { fetchMainUser } from "../../actions/Actions";
 
-const Card = ({ fetchMainUser, navigation }) => {
+const Card = ({ fetchMainUser, user, navigation }) => {
     useEffect(() => fetchMainUser(), []);
 
     const onPressHandler = (index) => {
@@ -15,21 +15,21 @@ const Card = ({ fetchMainUser, navigation }) => {
 
     return (
         <View style={styles.container}>
-
-                    <View  style={styles.usernameContainer}>
-                        <TouchableOpacity onPress={
-                            (e) => onPressHandler()
-                        }>
-                            <View style={styles.insideCard}>
-                                <Text style={styles.insideCardText}>name</Text>
-                                <Text style={styles.insideCardText}>last name</Text>
-                                <Text style={styles.insideCardText}>email</Text>
-                                <Text style={styles.insideCardText}>address</Text>
-                                <Text style={styles.insideCardText}>contact</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-
+            {user.map((u, index) => (
+                <View key={index} style={styles.usernameContainer}>
+                    <TouchableOpacity onPress={
+                        (e) => onPressHandler(index)
+                    }>
+                        <View style={styles.insideCard}>
+                            <Text style={styles.insideCardText}>{u.name}</Text>
+                            <Text style={styles.insideCardText}>{u.email}</Text>
+                            <Text style={styles.insideCardText}>{u.phone}</Text>
+                            <Text style={styles.insideCardText}>{u.company.name}</Text>
+                            <Text style={styles.insideCardText}>{u.website}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            ))}
         </View>
     );
 }
@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        width: "90%"
     },
     detailsButton: {
         height: 20,
