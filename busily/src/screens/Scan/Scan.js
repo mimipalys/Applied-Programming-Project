@@ -1,18 +1,9 @@
 import React, { Component, useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { fetchDataAll } from "../../actions/Actions";
 
-const Scan = ({ fetchDataAll, users, navigation }) => {
-    useEffect(() => fetchDataAll(), []);
-
-    const onPressHandler = (index) => {
-        navigation.push("Library", {
-            itemId: index,
-        });
-    }
-
+const Scan = () => {
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.ScanButton}>
