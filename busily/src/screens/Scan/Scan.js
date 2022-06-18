@@ -3,15 +3,23 @@ import { Text, View, StyleSheet, TouchableOpacity, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import * as Linking from 'expo-linking';
 
-const Scan = () => {
+const Scan = ({navigation}) => {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
     useEffect(() => {
-        (async () => {
-            const { status } = await BarCodeScanner.requestPermissionsAsync();
-            setHasPermission(status === 'granted');
-        })();
-    }, []);
+        const unsubscribe = navigation.addListener('focus', () => {
+            // do something - for example: reset states, ask for camera permission
+            setScanned(false);
+            setHasPermission(false);
+            (async () => {
+                const { status } = await BarCodeScanner.requestPermissionsAsync();
+                setHasPermission(status === "granted");
+            })();
+        });
+
+        // Return the function to unsubscribe from the event so it gets removed on unmount
+        return unsubscribe;
+    }, [navigation]);
     const handleBarCodeScanned = ({ data }) => {
         setScanned(true);
         Linking.openURL(data).then(r => null);
