@@ -1,6 +1,5 @@
 import React, { Component, useEffect } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { fetchDataAll } from "../../actions/Actions";
 
