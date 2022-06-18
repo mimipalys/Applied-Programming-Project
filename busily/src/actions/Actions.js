@@ -19,7 +19,7 @@ export const fetchDataAll = () => (dispatch) => {
 };
 export const fetchMainUser = () => (dispatch) => {
     axios.get("https://jsonplaceholder.typicode.com/users/1").then((response) => {
-        const list = [response.data]
+        const list = [response.data];
         dispatch(dataFetchOne(list));
     });
 };
