@@ -1,14 +1,43 @@
-import React, { Component, useEffect } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { connect } from "react-redux";
-import { fetchDataAll } from "../../actions/Actions";
+import React, { useState, useEffect } from 'react';
+import { Text, View, StyleSheet, TouchableOpacity, Button } from 'react-native';
+import { BarCodeScanner } from 'expo-barcode-scanner';
+import * as Linking from 'expo-linking';
 
-const Scan = () => {
+const Scan = ({navigation}) => {
+    const [hasPermission, setHasPermission] = useState(null);
+    const [scanned, setScanned] = useState(false);
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            // do something - for example: reset states, ask for camera permission
+            setScanned(false);
+            setHasPermission(false);
+            (async () => {
+                const { status } = await BarCodeScanner.requestPermissionsAsync();
+                setHasPermission(status === "granted");
+            })();
+        });
+
+        // Return the function to unsubscribe from the event so it gets removed on unmount
+        return unsubscribe;
+    }, [navigation]);
+    const handleBarCodeScanned = ({ data }) => {
+        setScanned(true);
+        Linking.openURL(data).then(r => null);
+    };
+    if (hasPermission === null) {
+        return <Text>Requesting for camera permission</Text>;
+    }
+    if (hasPermission === false) {
+        return <Text>No access to camera</Text>;
+    }
+
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.ScanButton}>
-                <Text style={styles.ScanInside}>Scan</Text>
-            </TouchableOpacity>
+            <BarCodeScanner
+                onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+                style={StyleSheet.absoluteFillObject}
+            />
+            {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
         </View>
     );
 }
@@ -23,7 +52,7 @@ const styles = StyleSheet.create({
         backgroundColor: "rgba(16,71,73,0.5)",
         borderRadius: 300,
         width: "100%",
-        padding:100,
+        padding: 100,
     },
     ScanInside: {
         marginVertical: 20,
@@ -33,14 +62,4 @@ const styles = StyleSheet.create({
     }
 });
 
-const mapStateToProps = (state) => {
-    return {
-        users: state.app.users,
-    };
-};
-
-const mapDispatchToProps = {
-    fetchDataAll,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Scan);
+export default Scan;
