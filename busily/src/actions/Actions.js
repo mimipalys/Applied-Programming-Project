@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_ALL_DATA, FETCH_ONE_DATA } from "../constants/Constants";
+import { FETCH_ALL_DATA, FETCH_ONE_DATA, SCAN_DATA } from "../constants/Constants";
 
 const dataFetch = (data) => ({
     type: FETCH_ALL_DATA,
@@ -23,3 +23,6 @@ export const fetchMainUser = () => (dispatch) => {
         dispatch(dataFetchOne(list));
     });
 };
+/*export const getScanData = () => (dispatch) => {
+
+};*/

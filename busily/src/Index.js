@@ -9,6 +9,7 @@ import Store from "./reduxStore/Store";
 import CardPage from "./screens/Card/Card";
 import ScanPage from "./screens/Scan/Scan";
 import LibraryPage from "./screens/Library/Library";
+import EditPage from "./screens/Edit/Edit";
 
 const Tab = createBottomTabNavigator();
 
@@ -59,6 +60,11 @@ export default function AppRouter () {
                                     <MaterialCommunityIcons name="library" color={color} size={size} />
                                 ),
                             }}
+                        />
+                        <Tab.Screen
+                            name="Edit"
+                            component={EditPage}
+                            options={{tabBarButton: () => null}}
                         />
                     </Tab.Navigator>
                 </NavigationContainer>
