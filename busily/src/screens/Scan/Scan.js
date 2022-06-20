@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import * as Linking from 'expo-linking';
+import { getScanData } from "../../actions/Actions";
+import { connect } from "react-redux";
 
-const Scan = ({navigation}) => {
+const Scan = ({navigation, getScanData}) => {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
     useEffect(() => {
@@ -22,6 +24,7 @@ const Scan = ({navigation}) => {
     }, [navigation]);
     const handleBarCodeScanned = ({ data }) => {
         setScanned(true);
+        getScanData(data);
         Linking.openURL(data).then(r => null);
     };
     if (hasPermission === null) {
@@ -62,4 +65,12 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Scan;
+const mapStateToProps = (state) => ({
+    scanData: state.scanData,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    getScanData: (data) => dispatch(getScanData(data))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Scan)

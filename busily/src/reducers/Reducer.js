@@ -21,7 +21,7 @@ export const app = (state = initialState, action) => {
         case SCAN_DATA:
             return {
                 ...state,
-                scanData: action.data,
+                scanData: [...state.scanData, action.payload]
             };
         default:
             return state;

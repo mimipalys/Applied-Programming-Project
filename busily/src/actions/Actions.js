@@ -23,6 +23,9 @@ export const fetchMainUser = () => (dispatch) => {
         dispatch(dataFetchOne(list));
     });
 };
-/*export const getScanData = () => (dispatch) => {
-
-};*/
+export function getScanData(data) {
+    return {
+        type: SCAN_DATA,
+        payload: data,
+    }
+};
