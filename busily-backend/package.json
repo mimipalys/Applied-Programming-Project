@@ -7,8 +7,5 @@
   },
   "devDependencies": {
     "@architect/architect": "^10.3.3"
-  },
-  "dependencies": {
-    "@aws-amplify/cli": "^8.5.1"
   }
 }
