@@ -25,6 +25,7 @@ const Card = ({ fetchMainUser, user, navigation }) => {
                             <Text style={styles.insideCardText}>{u.phone}</Text>
                             <Text style={styles.insideCardText}>{u.company.name}</Text>
                             <Text style={styles.insideCardText}>{u.website}</Text>
+                            {/*hello*/}
                         </View>
                     </TouchableOpacity>
                 </View>
