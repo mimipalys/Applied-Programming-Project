@@ -16,7 +16,7 @@ exports.handler = async function http (req) {
       {
         "id": 2,
         "name": "Denim Hasanbasic",
-        "username": "Demmy",
+        "username": "Sir Cumalot",
         "email": "dendimir@april.biz",
         "phone": "1-770-736-8031 x56442",
         "website": "hildegard.org",
