@@ -1,13 +1,9 @@
-import {FETCH_ALL_DATA, FETCH_ONE_DATA} from "../constants/Constants";
+import {FETCH_ALL_DATA, FETCH_ONE_DATA, SCAN_DATA} from "../constants/Constants";
 
 const initialState = {
     users: [],
     user: [],
-    sensors: [
-        {
-            name: "Tesaa",
-        }
-    ]
+    scanData: [],
 };
 
 export const app = (state = initialState, action) => {
@@ -21,6 +17,11 @@ export const app = (state = initialState, action) => {
             return {
                 ...state,
                 user: action.data,
+            };
+        case SCAN_DATA:
+            return {
+                ...state,
+                scanData: [...state.scanData, action.payload]
             };
         default:
             return state;

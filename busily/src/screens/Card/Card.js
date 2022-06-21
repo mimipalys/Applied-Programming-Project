@@ -7,7 +7,7 @@ const Card = ({ fetchMainUser, user, navigation }) => {
     useEffect(() => fetchMainUser(), []);
 
     const onPressHandler = (index) => {
-        navigation.push("Library", {
+        navigation.navigate("Edit", {
             itemId: index,
         });
     }

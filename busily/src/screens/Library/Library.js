@@ -1,42 +1,16 @@
 import React, { Component, useEffect } from "react";
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
-import { fetchDataAll } from "../../actions/Actions";
 
-const Library = ({ fetchDataAll, users, navigation }) => {
-    // useEffect(() => fetchDataAll(), []);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch('http://localhost:3333')
-            const json = await response.json();
-            console.log(json);
-        }
-        fetchData()
-    }, [])
-
-    const onPressHandler = (index) => {
-        navigation.push("Card", {
-            itemId: index,
-        });
-    }
-
+const Library = ({ scanData }) => {
     return (
         <View style={styles.container}>
             <ScrollView style={styles.Scroller}>
-                {users.map((u, index) => (
+                {scanData.map((d, index) => (
                     <View key={index} style={styles.usernameWrapper2}>
-                        <TouchableOpacity onPress={
-                            (e) => onPressHandler(index)
-                        }>
                             <View style={styles.insideCard}>
-                                <Text style={styles.insideCardText}>{u.name} ({u.username})</Text>
-                                {/*<Text style={styles.insideCardText}>{u.email}</Text>
-                                <Text style={styles.insideCardText}>{u.phone}</Text>
-                                <Text style={styles.insideCardText}>{u.company.name}</Text>
-                                <Text style={styles.insideCardText}>{u.website}</Text>*/}
+                                <Text>{d}</Text>
                             </View>
-                        </TouchableOpacity>
                     </View>
                 ))}
             </ScrollView>
@@ -94,12 +68,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-        users: state.app.users,
+        scanData: state.app.scanData,
     };
 };
 
-const mapDispatchToProps = {
-    fetchDataAll,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Library);
+export default connect(mapStateToProps)(Library);

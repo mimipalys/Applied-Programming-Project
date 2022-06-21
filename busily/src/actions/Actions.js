@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_ALL_DATA, FETCH_ONE_DATA } from "../constants/Constants";
+import { FETCH_ALL_DATA, FETCH_ONE_DATA, SCAN_DATA } from "../constants/Constants";
 
 const dataFetch = (data) => ({
     type: FETCH_ALL_DATA,
@@ -19,7 +19,13 @@ export const fetchDataAll = () => (dispatch) => {
 };
 export const fetchMainUser = () => (dispatch) => {
     axios.get("https://jsonplaceholder.typicode.com/users/1").then((response) => {
-        const list = [response.data]
+        const list = [response.data];
         dispatch(dataFetchOne(list));
     });
+};
+export function getScanData(data) {
+    return {
+        type: SCAN_DATA,
+        payload: data,
+    }
 };
