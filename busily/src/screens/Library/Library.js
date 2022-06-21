@@ -1,11 +1,19 @@
 import React, { Component, useEffect } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { fetchDataAll } from "../../actions/Actions";
 
 const Library = ({ fetchDataAll, users, navigation }) => {
-    useEffect(() => fetchDataAll(), []);
+    // useEffect(() => fetchDataAll(), []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch('http://localhost:3333')
+            const json = await response.json();
+            console.log(json);
+        }
+        fetchData()
+    }, [])
 
     const onPressHandler = (index) => {
         navigation.push("Card", {
@@ -23,10 +31,10 @@ const Library = ({ fetchDataAll, users, navigation }) => {
                         }>
                             <View style={styles.insideCard}>
                                 <Text style={styles.insideCardText}>{u.name} ({u.username})</Text>
-                                <Text style={styles.insideCardText}>{u.email}</Text>
+                                {/*<Text style={styles.insideCardText}>{u.email}</Text>
                                 <Text style={styles.insideCardText}>{u.phone}</Text>
                                 <Text style={styles.insideCardText}>{u.company.name}</Text>
-                                <Text style={styles.insideCardText}>{u.website}</Text>
+                                <Text style={styles.insideCardText}>{u.website}</Text>*/}
                             </View>
                         </TouchableOpacity>
                     </View>
