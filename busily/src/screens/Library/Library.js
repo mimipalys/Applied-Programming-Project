@@ -3,6 +3,9 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-nati
 import { connect } from "react-redux";
 
 const Library = ({ scanData }) => {
+
+    console.log(scanData);
+
     return (
         <View style={styles.container}>
             <ScrollView style={styles.Scroller}>

@@ -1,17 +1,33 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
+import {View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Button} from "react-native";
 import { connect } from "react-redux";
-import { fetchMainUser } from "../../actions/Actions";
+import {fetchMainUser} from "../../actions/Actions";
 
-const Edit = ({user}) => {
+const Edit = ({fetchMainUser, user, navigation}) => {
+    const [postText, setPostText] = React.useState('');
 
     return (
         <View style={styles.container}>
-            {user.map((u, index) => (
-                <View key={index} style={styles.usernameContainer}>
-                   <Text>{u.name}</Text>
+                <View style={styles.usernameContainer}>
+                    <TextInput
+                        style={styles.refreshButton}
+                        placeholder="Your Name"
+                        value={postText}
+                        onChangeText={setPostText}
+                    />
+                    <Button
+                        style={styles.usernameContainer}
+                        title="Done"
+                        onPress={() => {
+                            // Pass and merge params back to home screen
+                            user.name = postText;
+                            navigation.navigate({
+                                name: 'Card',
+                                merge: true,
+                            });
+                        }}
+                    />
                 </View>
-            ))}
         </View>
     );
 }
@@ -49,13 +65,12 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         margin: 10,
-        width: 20,
-        height: 20,
+        width: "20%",
+        height: 50,
         backgroundColor: "#ccc",
     },
     usernameContainer: {
         display: "flex",
-        height: 40,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
@@ -66,14 +81,12 @@ const styles = StyleSheet.create({
     }
 });
 
-const mapStateToProps = (state) => {
-    return {
-        user: state.app.user,
-    };
-};
+const mapStateToProps = (state) => ({
+    user: state.app.user,
+})
 
-const mapDispatchToProps = {
-    fetchMainUser,
-};
+const mapDispatchToProps = (dispatch) => ({
+    fetchMainUser: (user) => dispatch(fetchMainUser(user))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Edit);

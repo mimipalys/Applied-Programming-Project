@@ -2,7 +2,9 @@ import {FETCH_ALL_DATA, FETCH_ONE_DATA, SCAN_DATA} from "../constants/Constants"
 
 const initialState = {
     users: [],
-    user: [],
+    user: {
+      name: "",
+    },
     scanData: [],
 };
 
@@ -16,7 +18,7 @@ export const app = (state = initialState, action) => {
         case FETCH_ONE_DATA:
             return {
                 ...state,
-                user: action.data,
+                user: [...state.user, action.payload]
             };
         case SCAN_DATA:
             return {

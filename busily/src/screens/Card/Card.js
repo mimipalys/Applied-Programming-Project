@@ -4,32 +4,24 @@ import { connect } from "react-redux";
 import { fetchMainUser } from "../../actions/Actions";
 
 const Card = ({ fetchMainUser, user, navigation }) => {
-    useEffect(() => fetchMainUser(), []);
+    useEffect(() => fetchMainUser, []);
 
-    const onPressHandler = (index) => {
-        navigation.navigate("Edit", {
-            itemId: index,
-        });
+    const onPressHandler = () => {
+        navigation.navigate("Edit");
     }
 
     return (
         <View style={styles.container}>
-            {user.map((u, index) => (
-                <View key={index} style={styles.usernameContainer}>
-                    <TouchableOpacity onPress={
-                        (e) => onPressHandler(index)
-                    }>
+                <View style={styles.usernameContainer}>
                         <View style={styles.insideCard}>
-                            <Text style={styles.insideCardText}>{u.name}</Text>
-                            <Text style={styles.insideCardText}>{u.email}</Text>
-                            <Text style={styles.insideCardText}>{u.phone}</Text>
-                            <Text style={styles.insideCardText}>{u.company.name}</Text>
-                            <Text style={styles.insideCardText}>{u.website}</Text>
-                            {/*hello*/}
+                            <Text style={styles.insideCardText}>{user.name}</Text>
                         </View>
-                    </TouchableOpacity>
                 </View>
-            ))}
+            <TouchableOpacity onPress={
+                (e) => onPressHandler()
+            }>
+                <Text>Click here to Add!</Text>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -98,4 +90,4 @@ const mapDispatchToProps = {
     fetchMainUser,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Card);
+export default connect(mapStateToProps)(Card);
