@@ -12,9 +12,9 @@ const dataFetchOne = (data) => ({
 })
 
 export const fetchDataAll = () => (dispatch) => {
-    axios.get("https://jsonplaceholder.typicode.com/users").then((response) => {
+    axios.get("https://localhost:3333/users").then((response) => {
         dispatch(dataFetch(response.data));
-    });
+    }).catch(err=>err);
 
 };
 export const fetchMainUser = () => (dispatch) => {
